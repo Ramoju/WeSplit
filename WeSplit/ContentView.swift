@@ -15,6 +15,10 @@ struct ContentView: View {
     
     let tipPercentages = [0,10,15,20,25]
     
+    var totalWithTip : Double {
+        return checkAmount * (1.0 + Double(tipPercentage))
+    }
+    
     var totalPerPerson: Double {
         //calculate the total per person
         let peopleCount = Double(numberOfPeople + 2)
@@ -48,8 +52,12 @@ struct ContentView: View {
                     }
                     .pickerStyle(.segmented)
                 }
-                Section{
+                Section("Amount per person"){
                     Text(totalPerPerson, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                }
+                
+                Section("Total Amount(includes tip)"){
+                    Text(totalWithTip, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
                 }
             }
             .navigationTitle("WeSplit")
