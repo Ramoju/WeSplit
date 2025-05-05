@@ -58,6 +58,7 @@ struct ContentView: View {
                 
                 Section("Total Amount(includes tip)"){
                     Text(totalWithTip, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                        .foregroundColor(tipPercentage > 0 ? .black : .red)
                 }
             }
             .navigationTitle("WeSplit")
